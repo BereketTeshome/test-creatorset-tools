@@ -1,0 +1,6 @@
+The documentation for the library used is in
+http://wavesurfer-js.org/docs
+
+This repo has an example on how to use the waveform
+with react
+https://github.com/Rajatm544/react-audio-editor/blob/main/src/components/AudioWaveform.js

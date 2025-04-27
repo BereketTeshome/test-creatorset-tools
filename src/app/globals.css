@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.box-dashed {
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='16' ry='16' stroke='%23444' stroke-width='2' stroke-dasharray='10' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+  border-radius: 16px;
+}
+.animate {
+  animation: shimmer 2s infinite;
+  background: linear-gradient(90deg, #313030 0%, #3b3a3a 100%), #939090;
+  background-size: 1000px 100%;
+}
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+/* Styling for the scrollbar track */
+::-webkit-scrollbar-track {
+  background: #262525;
+}
+
+/* Styling for the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background: #484646;
+  border-radius: 100px;
+}
+
+/* Setting the width of the scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}

@@ -1,0 +1,228 @@
+@use '../../../../../../../styles/_index.scss' as *;
+@use '../VCT_captionToolModal.scss' as *;
+$profaneColor: #ff0000;
+
+.CTool_Timeline-Component {
+	height: calc(100% - $timelineControlsHeight);
+	@include center();
+
+	.CTool_TimelineSection-Icons {
+		@include center();
+		flex-direction: column;
+		height: 100%;
+		width: $timelineIconsWidth;
+
+		i {
+			@include center();
+			font-size: 1rem;
+			width: 100%;
+			background-color: #333333;
+			height: calc(100% * 1 / 4);
+
+			&:not(:nth-child(3)) {
+				border-bottom: 1px solid $backgroundColor;
+			}
+
+			&:nth-child(3) {
+				height: calc(100% / 2);
+			}
+		}
+	}
+	.TimelineSection {
+		height: 100%;
+		width: calc(100% - $timelineIconsWidth);
+		.TTags_Component {
+			height: 100%;
+			width: 100%;
+			overflow-x: scroll;
+			-ms-overflow-style: none; /* for Internet Explorer, Edge */
+			scrollbar-width: none; /* for Firefox */
+			position: relative;
+			&::-webkit-scrollbar {
+				display: none; /* for Chrome, Safari, and Opera */
+			}
+			.TTags_CaptionsContainer,
+			.TTags_TimeSpanContainer {
+				height: 25%;
+				display: flex;
+				align-items: center;
+				cursor: pointer;
+			}
+
+			.TTags_TimeSpanContainer {
+				justify-content: space-between;
+				padding: 0rem 1rem;
+				background-color: #333333;
+				border-bottom: 1px solid $backgroundColor;
+				aside {
+					font-size: 0.8rem;
+					cursor: default;
+				}
+			}
+			.TTags_CaptionsContainer {
+				position: relative;
+				.TTags_CaptionBlock {
+					position: absolute;
+					left: 0;
+					height: 100%;
+					@include center();
+					justify-content: space-around;
+					white-space: nowrap;
+					.TagContainer {
+						height: 100%;
+						max-height: 2.5rem;
+						position: relative;
+						&:not(:last-of-type) {
+							margin-right: 0.5rem;
+						}
+						.activeDrag,
+						.inactiveDrag {
+							background-color: $textColor;
+							color: $backgroundColor;
+							bottom: 0;
+							cursor: move;
+							height: 100%;
+							border-radius: 0.2rem;
+							position: absolute;
+							left: -0.5rem;
+							transition: 0.2s;
+							// Styling for the right tag handle
+							&[data-isright='true'] {
+								left: auto;
+								right: -0.5rem;
+							}
+						}
+						.inactiveDrag {
+							opacity: 0;
+						}
+						.activeDrag {
+							opacity: 1;
+
+							&:active {
+								background-color: white;
+							}
+						}
+						&.profane {
+							.Tag {
+								background-color: $profaneColor;
+							}
+						}
+
+						.Tag {
+							@include captionToolInputStyle();
+							height: 100%;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: $onMobile) {
+	.CTool_TimelineSection-Icons {
+		display: none !important;
+	}
+	.CTool_Timeline-Component {
+		height: calc(
+			$TagsHeightMobile + $TimelineHeightMobile + $TimelineTagsGapMobile + $VCTmobilePaddingBottom
+		) !important;
+		pointer-events: auto;
+
+		.TimelineSection {
+			width: 100% !important;
+			height: 100% !important;
+			.WF_Component,
+			.TTracker_Component {
+				display: none !important;
+			}
+
+			.TTags_Component {
+				@include center();
+				flex-direction: column-reverse;
+				align-items: flex-start;
+				gap: $TimelineTagsGapMobile;
+				height: 100% !important;
+				background-color: $VCTmobileControlsBackgroundColor;
+				padding-bottom: $VCTmobilePaddingBottom;
+
+				.TTags_TimeSpanContainer {
+					background-color: $VCTmobileTimeStampsBackgroundColor;
+					border-color: $VCTmobileTimeStampsBackgroundColor;
+					height: $TimelineHeightMobile !important;
+				}
+				.TTags_CaptionsContainer {
+					height: $TagsHeightMobile !important;
+
+					.TTags_CaptionBlock {
+						.Tag {
+							background-color: $VCTmobileControlsBackgroundColor !important;
+							font-weight: 500;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.resizeable {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border-radius: 3px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: 0s, transform 0.2s;
+	transform: scale(0);
+
+	&[data-isactive='true'] {
+		transform: scale(1);
+	}
+}
+
+.resizer,
+.dragTimeIndicator {
+	position: absolute;
+	background: #aaaaaa;
+}
+
+.resizer-l,
+.resizer-r {
+	border-radius: 2px;
+}
+
+.dragTimeIndicator {
+	background: #aaaaaa;
+	color: $primary_black;
+	width: 6rem;
+	height: 25px;
+	right: 0;
+	top: -2rem;
+	@include center();
+	border-radius: 2px;
+
+	&[data-isleft='true'] {
+		right: auto;
+		left: 0;
+	}
+}
+
+.resizer-r {
+	cursor: col-resize;
+	height: 100%;
+	right: 0;
+	top: 0;
+	width: 8px;
+	pointer-events: all !important;
+}
+
+.resizer-l {
+	cursor: col-resize;
+	height: 100%;
+	left: 0;
+	top: 0;
+	width: 8px;
+	pointer-events: all !important;
+}

@@ -1,0 +1,9 @@
+@use '../../../../../../../../styles/index' as *;
+
+.WF_Component {
+	height: 100%;
+
+	& > * {
+		height: calc(100%) !important;
+	}
+}

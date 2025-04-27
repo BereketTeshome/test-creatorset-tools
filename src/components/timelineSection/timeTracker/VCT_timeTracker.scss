@@ -1,0 +1,68 @@
+@use '../../../../../../../../styles/_index.scss' as *;
+@use '../../VCT_captionToolModal.scss' as *;
+
+$TT_headerHeight: 2.5rem;
+$TT_valuesHeight: 2rem;
+$TT_cirlceHeight: 7px;
+.TTracker_Component {
+	position: absolute;
+	left: 0rem;
+	bottom: 0;
+	width: 6rem;
+	height: calc(100%);
+	cursor: pointer;
+	// transition: 0.26s linear;
+	pointer-events: none;
+	.Line {
+		@include center();
+		flex-direction: column;
+		justify-content: space-between;
+		height: 100%;
+		width: 3px;
+		background-color: $red;
+		position: relative;
+		margin-right: 1px;
+
+		header {
+			width: 6rem;
+			height: $TT_headerHeight;
+			@include center();
+			flex-direction: column;
+			.ValuesContainer,
+			.Triangle {
+				background-color: $red;
+				cursor: default;
+			}
+			.ValuesContainer {
+				@include center();
+				color: white;
+				font-weight: 600;
+				width: 100%;
+				height: $TT_valuesHeight;
+				border-radius: 1.5rem;
+				font-size: 0.9rem;
+
+				mark {
+					background-color: rgba(255, 255, 255, 0);
+					color: inherit;
+					margin-left: 0.2rem;
+					font-weight: inherit;
+					opacity: 0.6;
+				}
+			}
+			.Triangle {
+				width: 1.1rem;
+				height: 1.3rem;
+				clip-path: polygon(51% 95%, 0 0, 100% 0);
+				margin-top: -2px; // to aviod a border showing in the render
+			}
+		}
+
+		.Circle {
+			width: $TT_cirlceHeight;
+			height: $TT_cirlceHeight;
+			border-radius: 50%;
+			background-color: $red;
+		}
+	}
+}

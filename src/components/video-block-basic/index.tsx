@@ -35,7 +35,6 @@ const VideosBlockBasic = ({
       textDisplayStyle: "normal",
       textDisplayPosition: "center",
       animations: "zoom",
-      textRenderingQuality: "hd",
       textScale: 0.2,
     });
 

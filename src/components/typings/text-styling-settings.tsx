@@ -20,6 +20,5 @@ export interface TextStylingSettings {
     | "one-word-background";
   textDisplayPosition: "bottom" | "top" | "center";
   animations: "bounce" | "fade" | "slide" | "zoom" | "none";
-  textRenderingQuality: "hd";
   textScale?: number;
 }
